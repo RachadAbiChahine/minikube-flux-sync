@@ -59,8 +59,6 @@ spec:
 
       ingress:
         enabled: true
-
-
         hosts:
          - alertmanager.192.168.64.9.xip.io
 
