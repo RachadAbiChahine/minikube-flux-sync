@@ -1,0 +1,105 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: prometheus-operator
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: prometheus-operator
+    version: 8.13.7
+    paths: stable/
+  values:
+
+    ## Provide a k8s version to auto dashboard import script example: kubeTargetVersionOverride: 1.16.6
+    ##
+    kubeTargetVersionOverride: "1.17.3"
+
+
+
+    ## Create default rules for monitoring the cluster
+    ##
+    defaultRules:
+      create: true
+      rules:
+        alertmanager: true
+        etcd: true
+        general: true
+        k8s: true
+        kubeApiserver: true
+        kubeApiserverError: true
+        kubePrometheusNodeAlerting: true
+        kubePrometheusNodeRecording: true
+        kubernetesAbsent: true
+        kubernetesApps: true
+        kubernetesResources: true
+        kubernetesStorage: true
+        kubernetesSystem: true
+        kubeScheduler: true
+        network: true
+        node: true
+        prometheus: true
+        prometheusOperator: true
+        time: true
+
+      ## Runbook url prefix for default rules
+      runbookUrl: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#
+      ## Reduce app namespace alert scope
+      appNamespacesTarget: ".*"
+
+
+    alertmanager:
+
+
+
+      ingress:
+        enabled: true
+
+
+        hosts:
+         - alertmanager.192.168.64.9.xip.io
+
+        ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
+        ##
+        paths:
+         - /
+
+
+        retention: 1h
+
+    grafana:
+      enabled: false
+
+
+    kubeControllerManager:
+      enabled: true
+
+    prometheus:
+
+      enabled: true
+
+
+
+      ingress:
+        enabled: true
+        annotations: {}
+        labels: {}
+
+        ## Hostnames.
+        ## Must be provided if Ingress is enabled.
+        ##
+        # hosts:
+        #   - prometheus.domain.com
+        hosts: [prometheus.192.168.64.9.xip.io]
+
+        ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
+        ##
+        paths: [/]
+
+        selfMonitor: false
+        retention: 1d
