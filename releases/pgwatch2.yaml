@@ -24,10 +24,6 @@ spec:
       PW2_WEBNOANONYMOUS: true
       PW2_WEBUSER: admin
       PW2_WEBPASSWORD: admin
-      PW2_ADHOC_CONN_STR: postgresql://pgwatch2@localhost/pgwatch2
-      PW2_ADHOC_CONFIG: full
-      PW2_ADHOC_CREATE_HELPERS: true
-      PW2_TESTDATA_DAYS: 2
       PW2_TESTDB: true
     ingress:
       enabled: true
