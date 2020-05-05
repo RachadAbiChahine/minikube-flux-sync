@@ -1,0 +1,36 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: chronograf
+  namespace: monitoring
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: chronograf
+  chart:
+    repository: https://helm.influxdata.com/
+    name: chronograf
+    version: 1.1.10
+    paths: influxdata/
+  values:
+    ingress:
+      enabled: true
+      hostname: chronograf.192.168.64.9.xip.io
+
+    ## OAuth Settings for OAuth Providers
+    ## More information -> https://github.com/influxdata/chronograf/blob/master/docs/auth.md
+    ##
+    persistence:
+      enabled: true
+      ## chronograf data Persistent Volume Storage Class
+      ## If defined, storageClassName: <storageClass>
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is
+      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+      ##   GKE, AWS & OpenStack)
+      ##
+      # storageClass: "-"
+      accessMode: ReadWriteOnce
+      size: 5Gi

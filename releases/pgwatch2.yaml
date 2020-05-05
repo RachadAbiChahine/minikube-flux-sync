@@ -1,0 +1,35 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: pgwatch2
+  namespace: monitoring
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: pgwatch2
+  chart:
+    repository:  https://raw.githubusercontent.com/RachadAbiChahine/helm-charts-repo/master/
+    name: pgwatch2
+    version: 0.1.1
+  values:
+    env:
+      PW2_IHOST: influxdb.192.168.64.9.xip.io
+      PW2_IPORT: 80
+      PW2_IPASSWORD: minikube
+      PW2_IUSER: minikube
+      PW2_IDATABASE: minikube
+      PW2_GRAFANA_BASEURL: grafana.192.168.64.9.xip.io
+      PW2_WEBNOANONYMOUS: true
+      PW2_WEBUSER: admin
+      PW2_WEBPASSWORD: admin
+    ingress:
+      enabled: true
+      annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: pgwatch2.192.168.64.9.xip.io
+          paths: [/]
+
