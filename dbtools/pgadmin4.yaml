@@ -34,15 +34,15 @@ spec:
       enabled: false
 
       servers: |-
-      #  "1": {
-      #    "Name": "Minimally Defined Server",
-      #    "Group": "Servers",
-      #    "Port": 5432,
-      #    "Username": "postgres",
-      #    "Host": "localhost",
-      #    "SSLMode": "prefer",
-      #    "MaintenanceDB": "postgres"
-      #  }
+        "1": {
+          "Name": "quick-postgres-0",
+          "Group": "Servers",
+          "Port": 5432,
+          "Username": "postgres",
+          "Host": "quick-postgres.postgres-databases",
+          "SSLMode": "prefer",
+          "MaintenanceDB": "postgres"
+        }
 
     ingress:
       ## If true, pgAdmin Ingress will be created
