@@ -14,3 +14,21 @@ spec:
     name: kubedb
     version: 0.12.0
     paths: appscode/
+---
+
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kubedb-catalog
+  namespace: dbtools
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: kubedb-catalog
+  chart:
+    repository: https://charts.appscode.com/stable/
+    name: kubedb-catalog
+    version: 0.12.0
+    paths: appscode/
+
