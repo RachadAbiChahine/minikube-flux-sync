@@ -1,8 +1,8 @@
 apiVersion: kubedb.com/v1alpha1
 kind: Postgres
 metadata:
-  name: postgres-databases
-  namespace: demo
+  name: quick-postgres
+  namespace: postgres-databases
 spec:
   version: "10.2-v2"
   storageType: Durable
