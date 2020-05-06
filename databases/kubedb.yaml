@@ -1,0 +1,16 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kubedb-operator
+  namespace: databases
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: kubedb-operator
+  chart:
+    repository: https://charts.appscode.com/stable/
+    name: kubedb
+    version: 0.12.0
+    paths: appscode/
