@@ -2,17 +2,17 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: pgwatch2
+  name: official-pgwatch2
   namespace: monitoring
   annotations:
     fluxcd.io/automated: "false"
     fluxcd.io/tag.chart-image: semver:~4.0
 spec:
-  releaseName: pgwatch2
+  releaseName: official-pgwatch2
   chart:
     repository:  https://raw.githubusercontent.com/RachadAbiChahine/helm-charts-repo/master/
-    name: pgwatch2
-    version: 0.1.1
+    name: official-pgwatch2
+    version: 0.1.0
   values:
     pgwatch2:
       testDBEnabled: true
@@ -43,9 +43,9 @@ spec:
       user: admin
       password: pgwatch2admin # password will be auto generated if emtpy
       ingress:
-        enabled: false
+        enabled: true
         annotations: {}
-        host: pgwatch2-web.local
+        host: official-pgwatch2-web.minikube.local
         tls: []
         #  - secretName: chart-web-tls
         #    hosts:
@@ -59,9 +59,9 @@ spec:
       user: admin
       password: pgwatch2admin # password will be auto generated if emtpy
       ingress:
-        enabled: false
+        enabled: true
         annotations: {}
-        host: pgwatch2-grafana.local
+        host: official-pgwatch2-grafana.minikube.local
         tls: []
         #  - secretName: chart-grafana-tls
         #    hosts:
@@ -73,9 +73,9 @@ spec:
         type: ClusterIP
         servicePort: 9187
       ingress:
-        enabled: false
+        enabled: true
         annotations: {}
-        host: pgwatch2-exporter.local
+        host: official-pgwatch2-exporter.minikube.local
         tls: []
         #  - secretName: chart-exporter-tls
         #    hosts:
