@@ -58,7 +58,7 @@ spec:
       ## pgAdmin Ingress hostnames with optional path
       ## Must be provided if Ingress is enabled
       hosts:
-        - host: pgadmin.192.168.64.9.xip.io
+        - host: pgadmin.minikube.local
           paths: [/]
     env:
       email: rachad.abi-chahine@hotmail.fr

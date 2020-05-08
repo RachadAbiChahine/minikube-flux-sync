@@ -15,12 +15,12 @@ spec:
     version: 0.1.1
   values:
     env:
-      PW2_IHOST: influxdb.192.168.64.9.xip.io
+      PW2_IHOST: influxdb.minikube.local
       PW2_IPORT: 80
       PW2_IPASSWORD: minikube
       PW2_IUSER: minikube
       PW2_IDATABASE: minikube
-      PW2_GRAFANA_BASEURL: grafana.192.168.64.9.xip.io
+      PW2_GRAFANA_BASEURL: grafana.minikube.local
       PW2_WEBNOANONYMOUS: true
       PW2_WEBUSER: admin
       PW2_WEBPASSWORD: admin
@@ -31,6 +31,6 @@ spec:
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
       hosts:
-        - host: pgwatch2.192.168.64.9.xip.io
+        - host: pgwatch2.minikube.local
           paths: [/]
 
