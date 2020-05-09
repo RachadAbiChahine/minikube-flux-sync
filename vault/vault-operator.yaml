@@ -1,0 +1,88 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: vault-operator
+  namespace: vault
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: vault-operator
+  chart:
+    repository: https://kubernetes-charts.banzaicloud.com
+    name: vault-operator
+    version: 1.2.1
+    paths: banzaicloud-stable/
+  values:
+    # Default values for vault-operator.
+    # This is a YAML-formatted file.
+    # Declare variables to be passed into your templates.
+
+    replicaCount: 1
+
+    image:
+      repository: banzaicloud/vault-operator
+      tag: 1.2.0
+      pullPolicy: IfNotPresent
+
+    service:
+      type: ClusterIP
+      externalPort: 80
+      internalPort: 8080
+
+    nameOverride: ""
+    fullnameOverride: ""
+
+    crdAnnotations: {}
+
+    # The namespace where the operator watches for vault CRD objects, if not defined
+    # all namespaces are watched
+    watchNamespace: ""
+    syncPeriod: "1m"
+
+    # # If needed, define nodeSelector for vault operator
+    # nodeSelector:
+    #   "node-role.kubernetes.io/custom_worker": "true"
+
+    # # if tolerations are used inside cluster, define tolerations as well
+    # tolerations:
+    #   - effect: NoSchedule
+    #     key: node_role
+    #     operator: Equal
+    #     value: custom_worker
+
+    labels: {}
+    #  team: banzai
+
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+    affinity: {}
+
+    ## Assign a PriorityClassName to pods if set
+    priorityClassName: ""
+
+    terminationGracePeriodSeconds: 10
+
+    livenessProbe:
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    readinessProbe:
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+
+    etcd-operator:
+      enabled: true
+      etcdOperator:
+        commandArgs:
+          cluster-wide: true
+          create-crd: false
