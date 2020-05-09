@@ -1,0 +1,88 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: etcd-operator
+  namespace: vault
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: etcd-operator
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: etcd-operator
+    version: 0.10.3
+    paths: stable/
+  values:
+
+    ## Service account name and whether to create it
+    serviceAccount:
+      create: true
+      name: etcd-sa
+
+    # Select what to deploy
+    deployments:
+      etcdOperator: true
+      # one time deployment, delete once completed,
+      # Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/walkthrough/backup-operator.md
+      backupOperator: false
+      # one time deployment, delete once completed
+      # Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/walkthrough/restore-operator.md
+      restoreOperator: false
+
+    # creates custom resources, not all required,
+    # you could use `helm template --values <values.yaml> --name release_name ... `
+    # and create the resources yourself to deploy on your cluster later
+    customResources:
+      createEtcdClusterCRD: true
+      createBackupCRD: false
+      createRestoreCRD: false
+
+    # etcdOperator
+    etcdOperator:
+      priorityClassName: ""
+      name: etcd-operator
+      replicaCount: 1
+      image:
+        repository: quay.io/coreos/etcd-operator
+        tag: v0.9.4
+        pullPolicy: Always
+      resources:
+        cpu: 100m
+        memory: 128Mi
+    ## etcd-cluster specific values
+    etcdCluster:
+      name: etcd-cluster
+      size: 3
+      version: 3.2.25
+      image:
+        repository: quay.io/coreos/etcd
+        tag: v3.2.25
+        pullPolicy: Always
+      enableTLS: false
+      # TLS configs
+      tls:
+        static:
+          member:
+            peerSecret: etcd-peer-tls
+            serverSecret: etcd-server-tls
+          operatorSecret: etcd-client-tls
+      ## etcd cluster pod specific values
+      ## Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/spec_examples.md#three-members-cluster-with-resource-requirement
+      pod:
+        ## Antiaffinity for etcd pod assignment
+        ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+        antiAffinity: false
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        ## Node labels for etcd pod assignment
+        ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+        nodeSelector: {}
+        securityContext: {}
+        tolerations: []
