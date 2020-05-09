@@ -13,7 +13,6 @@ spec:
     repository: https://kubernetes-charts.banzaicloud.com
     name: vault-operator
     version: 1.2.1
-    paths: banzaicloud-stable/
   values:
     # Default values for vault-operator.
     # This is a YAML-formatted file.
