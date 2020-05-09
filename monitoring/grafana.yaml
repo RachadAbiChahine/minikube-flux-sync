@@ -15,6 +15,7 @@ spec:
     version: 5.0.23
     paths: stable/
   values:
+    replicas: 3
     grafana.ini:
       paths:
         data: /var/lib/grafana/data
