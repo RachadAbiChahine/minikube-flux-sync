@@ -11,7 +11,7 @@ spec:
   releaseName: vault-operator
   chart:
     repository: https://kubernetes-charts.banzaicloud.com
-    name: vault-operator
+    name: banzaicloud-stable/vault-operator
     version: 1.2.1
   values:
     # Default values for vault-operator.
