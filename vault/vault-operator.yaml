@@ -86,3 +86,11 @@ spec:
         commandArgs:
           cluster-wide: true
           create-crd: false
+
+    vault:
+      config:
+        listener:
+          tcp:
+            address: '[::]:8200'
+            tls_disable: true
+
