@@ -20,7 +20,6 @@ spec:
       PW2_IPASSWORD: minikube
       PW2_IUSER: minikube
       PW2_IDATABASE: minikube
-      PW2_GRAFANA_BASEURL: grafana.minikube.local
       PW2_WEBNOANONYMOUS: true
       PW2_WEBUSER: admin
       PW2_WEBPASSWORD: admin
