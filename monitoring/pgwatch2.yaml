@@ -31,11 +31,6 @@ spec:
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
       host: pgwatch2.minikube.local
-      adm:
-        path: /
-      grafana:
-        enable: true
-        path: /grafana
 
 
 
