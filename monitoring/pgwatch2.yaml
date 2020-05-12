@@ -12,7 +12,7 @@ spec:
   chart:
     repository:  https://raw.githubusercontent.com/RachadAbiChahine/helm-charts-repo/master/
     name: pgwatch2
-    version: 0.1.1
+    version: 0.1.2
   values:
     env:
       PW2_IHOST: influxdb.minikube.local
