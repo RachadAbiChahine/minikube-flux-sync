@@ -26,9 +26,9 @@ spec:
       PW2_WEBNOANONYMOUS: true
       PW2_WEBUSER: admin
       PW2_WEBPASSWORD: admin
-      PW2_TESTDB: true
-      PW2_GRAFANAUSER: "admin"
-      PW2_GRAFANAPASSWORD: "admin"
+      PW2_TESTDB: false
+      PW2_GRAFANAUSER: admin
+      PW2_GRAFANAPASSWORD: admin
       PW2_GRAFANANOANONYMOUS: true
     ingress:
       ingress:
