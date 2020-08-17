@@ -25,3 +25,4 @@ sleep 50
 echo $(fluxctl identity --k8s-fwd-ns flux)
 minikube addons enable freshpod
 minikube addons enable ingress
+fluxctl sync --k8s-fwd-ns=flux

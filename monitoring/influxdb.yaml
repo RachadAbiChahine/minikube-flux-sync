@@ -15,6 +15,8 @@ spec:
     version: 4.8.2
     paths: influxdata/
   values:
+    persistence:
+      enabled: false
     config:
       reporting_disabled: false
     ingress:
