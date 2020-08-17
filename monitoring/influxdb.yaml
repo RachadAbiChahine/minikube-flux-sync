@@ -100,7 +100,7 @@ spec:
       # kubernetes.io/tls-acme: "true"
 
 
-    env: {}
+    env:
      - name: INFLUXDB_DB
        value: "demo"
 
