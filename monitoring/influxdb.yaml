@@ -45,3 +45,8 @@ spec:
         ## User privileges
         ## Default: "WITH ALL PRIVILEGES"
         privileges: "WITH ALL PRIVILEGES"
+    initScripts:
+      enabled: false
+      scripts:
+        init.iql: |+
+          CREATE DATABASE "minikube" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
