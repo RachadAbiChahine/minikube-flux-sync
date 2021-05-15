@@ -13,7 +13,6 @@ spec:
     repository: https://helm.runix.net
     name: pgadmin4
     version: 1.2.0
-    paths: runix/
   values:
     # Default values for pgadmin.
 
