@@ -10,10 +10,10 @@ metadata:
 spec:
   releaseName: pgadmin
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
+    repository: https://helm.runix.net
     name: pgadmin
-    version: 1.2.3
-    paths: stable/
+    version: 1.2.0
+    paths: runix/
   values:
     # Default values for pgadmin.
 

@@ -9,7 +9,7 @@ spec:
   chart:
     repository: https://helm.influxdata.com/
     name: influxdb
-    version: 4.8.2
+    version: 4.8.9
     paths: influxdata
   values:
 
