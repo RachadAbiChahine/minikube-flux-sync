@@ -8,10 +8,10 @@ metadata:
     fluxcd.io/automated: "true"
 spec:
   releaseName: postgres-operator
-    chart:
-      repository: https://raw.githubusercontent.com/RachadAbiChahine/helm-charts-repo/master/
-      name: postgres-operator
-      version: 1.6.2
+  chart:
+    repository: https://raw.githubusercontent.com/RachadAbiChahine/helm-charts-repo/master/
+    name: postgres-operator
+    version: 1.6.2
   values:
     image:
       registry: registry.opensource.zalan.do
