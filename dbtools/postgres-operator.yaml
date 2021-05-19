@@ -16,7 +16,7 @@ spec:
     image:
       registry: registry.opensource.zalan.do
       repository: acid/postgres-operator
-      tag: v1.6.2
+      tag: v1.6.2-8-g7a8dc608
       pullPolicy: "IfNotPresent"
 
       # Optionally specify an array of imagePullSecrets.
@@ -25,8 +25,8 @@ spec:
       # imagePullSecrets:
       # - name: myRegistryKeySecretName
 
-    podAnnotations: { }
-    podLabels: { }
+    podAnnotations: {}
+    podLabels: {}
 
     configTarget: "ConfigMap"
 
@@ -391,15 +391,15 @@ spec:
 
     # Affinity for pod assignment
     # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-    affinity: { }
+    affinity: {}
 
     # Node labels for pod assignment
     # Ref: https://kubernetes.io/docs/user-guide/node-selection/
-    nodeSelector: { }
+    nodeSelector: {}
 
     # Tolerations for pod assignment
     # Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-    tolerations: [ ]
+    tolerations: []
 
     controllerID:
       # Specifies whether a controller ID should be defined for the operator
